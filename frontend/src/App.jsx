@@ -2,7 +2,6 @@
 // import Link from "next/link"
 import styles from "./index.module.css"
 import { EyeIcon } from "lucide-react"
-import Input from "./Input"
 
 function App() {
   return (
@@ -37,14 +36,14 @@ function App() {
 
           <form className={styles.form}>
             <div className={styles.nameFields}>
-              <Input type="text" place="Fletcher" className={styles.input} />
-              <Input type="text" place="Last name" className={styles.input} />
+              <input type="text" placeholder="First Name" className={styles.input} />
+              <input type="text" placeholder="Last Name" className={styles.input} />
             </div>
 
-            <Input type="email" place="Email" className={styles.input} />
+            <input type="email" placeholder="Email" className={styles.input} />
 
             <div className={styles.passwordContainer}>
-              <Input type="password" place="Enter your password" className={styles.input} />
+              <input type="password" placeholder="Enter your password" className={styles.input} />
               <button type="button" className={styles.eyeButton}>
                 <EyeIcon className={styles.eyeIcon} />
               </button>

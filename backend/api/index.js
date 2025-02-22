@@ -1,7 +1,5 @@
 const axios = require('axios');
-const dotenv = require('dotenv');
-
-dotenv.config();
+require('dotenv').config();
 
 const options = {
     method: 'GET',
@@ -16,10 +14,11 @@ const options = {
 async function fetchData() {
     try {
         const response = await axios.request(options);
-        console.log(response.data);
+        return response.data;
     } catch (error) {
         console.error("API Error:", error.response ? error.response.data : error.message);
+        throw error;
     }
 }
 
-fetchData();
+module.exports = { fetchData };

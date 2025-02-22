@@ -1,20 +1,30 @@
-const express =require('express');
-const mongoose=require('mongoose');
-const travelRoutes = require('./routes/travelRoutes');
-require('dotenv').config();
+const express = require('express');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const cors = require('cors');
 
-const app=express();
+const { fetchData } = require('./api/index');
 
+dotenv.config();
+const app = express();
 app.use(express.json());
-app.use('/api/travel', travelRoutes);
+app.use(cors());
+
+app.get('/api/hotel', async (req, res) => {
+    try {
+        const data = await fetchData();
+        res.json(data);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 
 mongoose.connect(process.env.MONGO_URI)
- .then(()=>{
-    app.listen(4000,()=>{
-        console.log("listening to port",process.env.PORT);
+.then(() => {
+    app.listen(4000, () => {
+        console.log("Server running on port", process.env.PORT || 4000);
+    });
 })
-}
-)
-.catch((err)=>{
-    console.error("connection error",err)
-})
+.catch((err) => {
+    console.error("Connection error", err);
+});
