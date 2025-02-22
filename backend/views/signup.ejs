@@ -1,21 +1,15 @@
-<form>
-    <h2>Sign Up</h2>
-        <label for="email">Email</label>
-        <input type="text" name="email" required>
-        <div class="email error"></div>
-        <label for="password">Password</label>
-        <input type="password" name="password" required>
-        <div class="password error"></div>
-        <button>Sign Up</button>
-</form>
-
-<%# script tag so that we can get the data from the form %>
-<script>
-    const form=document.querySelector('form');
-    form.addEventListener('submit',(e)=>{
-        e.preventDefault();
-        const email=form.email.value;
-        const password=form.password.value;
-        console.log(email,password);
-    })
-</script>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Signup</title>
+</head>
+<body>
+  <h1>Signup</h1>
+  <form action="/signup" method="POST">
+    <input type="text" name="name" placeholder="Name" required />
+    <input type="email" name="email" placeholder="Email" required />
+    <input type="password" name="password" placeholder="Password" required />
+    <button type="submit">Signup</button>
+  </form>
+</body>
+</html>
