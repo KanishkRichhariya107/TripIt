@@ -2,14 +2,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
-
+const travelRoutes=require('./routes/travelRoutes');
 const { fetchData } = require('./api/index');
 
 dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cors());
-
+app.set('view engine', 'ejs');
 app.get('/api/hotel', async (req, res) => {
     try {
         const data = await fetchData();
@@ -28,3 +28,4 @@ mongoose.connect(process.env.MONGO_URI)
 .catch((err) => {
     console.error("Connection error", err);
 });
+app.use(travelRoutes);

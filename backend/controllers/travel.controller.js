@@ -1,27 +1,43 @@
-class TravelController {
-    async getCheapestPackages(req, res) {
-        const { source, destination } = req.body;
+const User=require('../models/user.model');
 
-        if (!source || !destination) {
-            return res.status(400).json({ error: 'Source and destination are required.' });
-        }
+const handleErrors=(err)=>{
+    console.log(err.message,err.code);
+    let errors={email:'',password:''};
 
-        try {
-            const goibiboPackages = await goibiboService.fetchPackages(source, destination);
-            const makemytripPackages = await makemytripService.fetchPackages(source, destination);
-            const bookingPackages = await bookingService.fetchPackages(source, destination);
+    //duplicate email
+    if (err.code===11000){
+        errors.email='that email is already registered';
+        return errors;
+    }
 
-            const allPackages = [...goibiboPackages, ...makemytripPackages, ...bookingPackages];
-
-            const cheapestPackage = allPackages.reduce((cheapest, current) => {
-                return current.price < cheapest.price ? current : cheapest;
-            });
-
-            res.status(200).json({ cheapestPackage });
-        } catch (error) {
-            res.status(500).json({ error: error.message });
-        }
+    //validation errors
+    if(err.message.includes('user validation failed')){
+        Object.values(err.errors).forEach(({properties})=>{
+            console.log(properties);
+            errors[properties.path]=properties.message;
+        });
+}
+return errors
+}
+module.exports.signup_get=(req,res)=>{
+    res.render('signup');
+}
+module.exports.login_get=(req,res)=>{
+    res.render('login');
+}
+module.exports.signup_post=async(req,res)=>{
+    const{email,password}=req.body;
+    try{
+        const user=await User.create({email,password});
+        res.status(201).json(user);
+    }
+    catch(err){
+         const errors=handleErrors(err);
+         res.status(400).json({errors});
     }
 }
-
-export default new TravelController();
+module.exports.login_post=async(req,res)=>{
+    const{email,password}=req.body;
+    console.log(email,password);
+    res.send('user login');
+}
