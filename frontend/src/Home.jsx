@@ -20,10 +20,11 @@ function Home() {
 		return response.json();
 		})
 		.then(data => {
-		// The array of hotels is in data.data
-		setData(data.data || []); 
-		setLoading(false);
-		})
+            console.log('Fetched Data:', data); // Debugging line
+			console.log('Hotel Data:', data.data?.hotels); // Check hotel structure
+			setData(data.data?.hotels || []);
+            setLoading(false);
+        })
 		.catch(error => {
 		console.error('Error fetching data:', error);
 		setError(error.message);
@@ -38,10 +39,14 @@ function Home() {
 	<SearchForm/>
 		<h1>Travel Data</h1>
 		<ul>
-		{data.map((item, index) => (
-			<li key={index}>{item.name}</li>
-		))}
-		</ul>
+  {data.map((hotel) => (
+    <li key={hotel.hotel_id}>
+      {hotel.accessibilityLabel}
+    </li>
+  ))}
+</ul>
+
+
 	</>
 	);
 }
