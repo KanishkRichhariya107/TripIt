@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const path = require('path');
 const travelRoutes = require('./routes/travelRoutes');
-const { fetchData } = require('./api/index');
+const { fetch } = require('./api/index');
 
 dotenv.config();
 const app = express();
@@ -23,7 +23,12 @@ app.use(express.static(path.join(__dirname, 'views')));
 // API route example
 app.get('/api/hotel', async (req, res) => {
   try {
-    const data = await fetchData();
+    const data = await fetch();
+    if (!data || data.length === 0) {
+      console.log('No data found');
+     return res.status(204).send(); // No Content
+    }
+    console.log('Data fetched:', data);
     res.json(data);
   } catch (error) {
     res.status(500).json({ message: error.message });
