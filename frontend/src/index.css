@@ -7,7 +7,7 @@
 .leftSection {
 	flex: 1;
 	position: relative;
-	background-image: url("1.webp");
+	background-image: url("assets/1.webp");
 	background-size: cover;
 	background-position: center;
 	color: white;

@@ -6,44 +6,60 @@ const path = require('path');
 const travelRoutes = require('./routes/travelRoutes');
 const { fetch } = require('./api/index');
 
+// Configuration
 dotenv.config();
 const app = express();
+const PORT = process.env.PORT || 4000;
 
-// Middleware to parse JSON and URL-encoded data (for forms)
+// Database Connection
+const connectDB = async () => {
+	try {
+		await mongoose.connect(process.env.MONGO_URI);
+		console.log('MongoDB connected successfully');
+	} catch (err) {
+		console.error('MongoDB connection error:', err);
+		process.exit(1);
+	}
+};
+
+// Middleware Configuration
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+app.use(express.static(path.join(__dirname, '../frontend/src')));
 
-// Set EJS as the view engine
+// View Engine Setup
 app.set('view engine', 'ejs');
 
-// Serve static files from the views directory
-app.use(express.static(path.join(__dirname, 'views')));
-
-// API route example
-app.get('/api/hotel', async (req, res) => {
-  try {
-    const data = await fetch();
-    if (!data || data.length === 0) {
-      console.log('No data found');
-     return res.status(204).send(); // No Content
-    }
-    console.log('Data fetched:', data);
-    res.json(data);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
+// API Routes
+app.get('/api/hotels', async (req, res) => {
+	try {
+		const hotelData = await fetch();
+		
+		if (!hotelData?.data?.hotels?.length) {
+		return res.status(204).send(); // No Content
+		}
+		
+		res.json(hotelData);
+	} catch (error) {
+		const errorMessage = error.response?.data?.message || error.message;
+		console.error('Hotel API Error:', errorMessage);
+		res.status(500).json({ 
+		message: 'Failed to fetch hotel data',
+		error: errorMessage
+		});
+	}
 });
 
-// Use travel routes for signup and login
+// Application Routes
 app.use(travelRoutes);
 
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => {
-    app.listen(process.env.PORT || 4000, () => {
-      console.log("Server running on port", process.env.PORT || 4000);
-    });
-  })
-  .catch((err) => {
-    console.error("Connection error", err);
-  });
+// Server Initialization
+const startServer = async () => {
+	await connectDB();
+	app.listen(PORT, () => 
+		console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`)
+	);
+};
+
+startServer();

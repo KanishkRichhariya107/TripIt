@@ -1,0 +1,93 @@
+.hotel-search-container {
+	padding: 2rem;
+	background: #f7f7f7;
+	min-height: 100vh;
+}
+
+.main-title {
+	font-size: 2.5rem;
+	margin-bottom: 1rem;
+	text-align: center;
+}
+
+.loading-spinner, .error-banner {
+	text-align: center;
+	font-size: 1.2rem;
+	margin-top: 2rem;
+}
+
+.hotel-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	justify-content: center;
+}
+
+.hotel-card {
+	background: white;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	width: 300px;
+}
+
+.hotel-image {
+	width: 100%;
+	height: 180px;
+	object-fit: cover;
+}
+
+.hotel-details {
+	padding: 1rem;
+}
+
+.hotel-name {
+	font-size: 1.5rem;
+	margin-bottom: 0.5rem;
+}
+
+.rating-container {
+	margin-bottom: 0.5rem;
+}
+
+.stars {
+	color: #f5a623;
+	margin-right: 0.5rem;
+}
+
+.review-score {
+	font-size: 0.9rem;
+	color: #333;
+}
+
+.hotel-location {
+	font-size: 0.9rem;
+	color: #777;
+	margin-bottom: 0.5rem;
+}
+
+.price-container {
+	margin-top: 0.5rem;
+}
+
+.original-price {
+	text-decoration: line-through;
+	color: #999;
+	margin-right: 0.5rem;
+}
+
+.current-price {
+	font-size: 1.2rem;
+	font-weight: bold;
+	color: #2a9d8f;
+}
+
+.badge {
+	display: inline-block;
+	background: #e76f51;
+	color: white;
+	padding: 0.25rem 0.5rem;
+	border-radius: 4px;
+	font-size: 0.8rem;
+	margin-top: 0.5rem;
+}
