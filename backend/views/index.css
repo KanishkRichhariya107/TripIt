@@ -7,14 +7,14 @@
 .leftSection {
 	flex: 1;
 	position: relative;
-	background-image: url("./assets/1.webp");
+	background-image: url("1.webp");
 	background-size: cover;
 	background-position: center;
 	color: white;
 	padding: 2rem;
 	display: flex;
 	flex-direction: column;
-	}
+}
 
 .logoContainer {
 	display: flex;
