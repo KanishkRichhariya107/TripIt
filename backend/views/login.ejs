@@ -1,21 +1,42 @@
-<form>
-    <h2>LogIn</h2>
-        <label for="email">Email</label>
-        <input type="text" name="email" required>
-        <div class="email error"></div>
-        <label for="password">Password</label>
-        <input type="password" name="password" required>
-        <div class="password error"></div>
-        <button>Log In</button>
-</form>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Login</title>
+		<link rel="stylesheet" href="index.css">
+	</head>
+	<body>
+		<div class="container">
+		<div class="leftSection">
+			<div class="heroContent">
+			<h2>
+				Capturing Moments,<br />
+				Creating Memories
+			</h2>
+			<div class="dots">
+				<span></span>
+				<span></span>
+				<span class="active"></span>
+			</div>
+			</div>
+		</div>
 
-<%# script tag so that we can get the data from the form %>
-<script>
-    const form=document.querySelector('form');
-    form.addEventListener('submit',(e)=>{
-        e.preventDefault();
-        const email=form.email.value;
-        const password=form.password.value;
-        console.log(email,password);
-    })
-</script>
+		<div class="rightSection">
+			<div class="formContainer">
+			<h1>Login</h1>
+			<p class="loginText">
+				Don't have an account? 
+				<a href="/signup">Sign up</a>
+			</p>
+
+			<form class="form" method="post" action="/login">
+				<input type="email" name="email" placeholder="Email" class="input" />
+
+				<input type="password" name="password" placeholder="Enter your password" class="input" />
+
+				<button type="submit" class="submitButton">Login</button>
+			</form>
+			</div>
+		</div>
+		</div>
+	</body>
+</html>

@@ -47,7 +47,12 @@ module.exports.signup_post = async (req, res) => {
 
 module.exports.login_post = async (req, res) => {
 	const { email, password } = req.body;
-	console.log(email, password);
-	// Implement login functionality here
-	res.send('User login');
+	try {
+		console.log(email, password);
+		// Redirect to the frontend home after login
+		res.status(200).redirect("http://localhost:5173");
+	} catch(err) {
+		const errors = handleErrors(err);
+		res.status(400).json({ errors });
+	}
 };

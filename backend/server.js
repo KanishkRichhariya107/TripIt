@@ -37,7 +37,7 @@ app.get('/api/hotels', async (req, res) => {
 		const hotelData = await fetch();
 		
 		if (!hotelData?.data?.hotels?.length) {
-		return res.status(204).send(); // No Content
+			return res.status(204).send(); // No Content
 		}
 		
 		res.json(hotelData);
@@ -45,8 +45,8 @@ app.get('/api/hotels', async (req, res) => {
 		const errorMessage = error.response?.data?.message || error.message;
 		console.error('Hotel API Error:', errorMessage);
 		res.status(500).json({ 
-		message: 'Failed to fetch hotel data',
-		error: errorMessage
+			message: 'Failed to fetch hotel data',
+			error: errorMessage
 		});
 	}
 });
