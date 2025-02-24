@@ -1,66 +1,72 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Signup</title>
-    <link rel="stylesheet" href="index.css">
-</head>
-<body>
-    
-    <div class="container">
-        <div class="leftSection">
-            <div class="heroContent">
-                <h2>
-                    Capturing Moments,
-                    <br />
-                    Creating Memories
-                </h2>
-                <div class='dots'>
-                    <span></span>
-                    <span></span>
-                    <span class='active'></span>
-                </div>
-            </div>
-        </div>
+	<head>
+		<title>Signup</title>
+		<link rel="stylesheet" href="index.css">
+	</head>
+	<body>
+		<div class="container">
+		<div class="leftSection">
+			<div class="heroContent">
+			<h2>
+				Capturing Moments,<br />
+				Creating Memories
+			</h2>
+			<div class="dots">
+				<span></span>
+				<span></span>
+				<span class="active"></span>
+			</div>
+			</div>
+		</div>
 
-        <div class="rightSection">
-            <div class='formContainer'>
-                <h1>Create an account</h1>
-                <p class='loginText'>
-                    Already have an account? 
-                </p>
+		<div class="rightSection">
+			<div class="formContainer">
+			<h1>Create an account</h1>
+			<p class="loginText">
+				Already have an account?
+			</p>
 
-                <form class='form' method="post" action="/signup" >
+			<form class="form" method="post" action="/signup">
+				<input 
+				type="text" 
+				name="name" 
+				placeholder="Name" 
+				class="input" 
+				/>
 
-                    <input type="text" name="name" placeholder="Name" class='input' />
+				<input 
+				type="email" 
+				name="email" 
+				placeholder="Email" 
+				class="input" 
+				/>
 
-                    <input type="email" name="email" placeholder="Email" class='input' />
+				<input 
+				type="password" 
+				name="password" 
+				placeholder="Enter your password" 
+				class="input" 
+				/>
 
-                    <input type="password" name="password" placeholder="Enter your password" class='input' />
+				<label class="checkbox">
+				<input type="checkbox" />
+				<span>I agree to the Terms and Conditions</span>
+				</label>
 
-                    <label class='checkbox'>
-						<input type="checkbox" />
-						<span>
-							I agree to the Terms and Conditions
-						</span>
-                    </label>
+				<button type="submit" class="submitButton">Create account</button>
 
-                    <button type="submit" class='submitButton'>Create account</button>
+				<div class="divider">
+				<span>Or register with</span>
+				</div>
 
-                    <div class='divider'>
-                        <span>Or register with</span>
-                    </div>
-
-                    <div class='socialButtons'>
-                        <button type="button" class='googleButton'>
-                            Google
-                        </button>
-                        <button type="button" class='appleButton'>
-                            Apple
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</body>
+				<div class="socialButtons">
+				<button type="button" class="googleButton">Google</button>
+				<button type="button" class="appleButton">Apple</button>
+				</div>
+			</form>
+			</div>
+		</div>
+		</div>
+	</body>
 </html>
